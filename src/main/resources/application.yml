@@ -1,0 +1,28 @@
+server:
+    port: 8080
+
+pixel:
+    kafka:
+        input-topic: "input"
+        retries: 3
+spring:
+    kafka:
+        bootstrap-servers:
+            "localhost:9092"
+        producer:
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.apache.kafka.common.serialization.StringSerializer
+        consumer:
+            concurrency: 4
+            group-id: boot-kafka-consumer
+            auto-offset-reset: latest
+            pollTimeout: 3000
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+    output:
+        ansi:
+            enabled: always
+    logging:
+        level:
+            root: "INFO"
